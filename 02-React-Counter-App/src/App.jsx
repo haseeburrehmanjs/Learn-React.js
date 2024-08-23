@@ -1,26 +1,46 @@
-import { useRef, useState } from "react"
+import { useState } from "react"
 
 function App() {
-  let [text, setText] = useState()
+  let [num, setNum] = useState(0)
 
-  function addTodo(event) {
-    event.preventDefault()
+  function addBtn() {
+    setNum(num + 1)
+  }
+  function lessBtn() {
+    if (num === 0) {
+      alert('Your value is 0')
+    } else {
+      setNum(num - 1)
+    }
+  }
+
+  function resetBtn() {
+    if (num === 0) {
+      alert('already Number is 0')
+    } else {
+      setNum(0)
+    }
   }
 
   return (
     <>
-      <h2 className="text-center mt-3">Hello World</h2>
-      {/* container div */}
-      <div className="container text-center">
-        {/* input form */}
-        <form onSubmit={addTodo} className="d-flex flex-wrap">
-          <input onChange={(e) => setText(e.target.value)} className="input" type="text" placeholder="Enter Todo!" />
-          <button className="btn btn-success mt-3 addTodoBtn">Add Todo</button>
-        </form>
-      </div>
-
-      <div id="list">
-        <ul></ul>
+      <div className="container">
+        <div>
+          <div className="Card-box">
+          <h1 className="text-white text-center">Counter</h1>
+            <div className="text-center">
+              <h1 className="text-white">{num}</h1>
+              <div className="d-flex gap-3 justify-content-center">
+                <button className="btn btn-primary" onClick={addBtn}>+</button>
+                <button className="btn btn-danger" onClick={resetBtn}>Reset</button>
+                <button className="btn btn-primary" onClick={lessBtn}>-</button>
+              </div>
+              <div>
+                <p className="text-white mt-2">Follow on <span><a href="https://github.com/haseeburrehmanjs" target="blank"> github</a></span> and <span><a href="https://www.linkedin.com/in/kamranahmedjs" target="blank">linkedin</a></span></p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   )

@@ -1,33 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useRef, useState } from "react"
 
 function App() {
-  const [count, setCount] = useState(0)
+  let [text, setText] = useState()
+
+  function addTodo(event) {
+    event.preventDefault()
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <h2 className="text-center mt-3">Hello World</h2>
+      {/* container div */}
+      <div className="container text-center">
+        {/* input form */}
+        <form onSubmit={addTodo} className="d-flex flex-wrap">
+          <input onChange={(e) => setText(e.target.value)} className="input" type="text" placeholder="Enter Todo!" />
+          <button className="btn btn-success mt-3 addTodoBtn">Add Todo</button>
+        </form>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
+      <div id="list">
+        <ul></ul>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
