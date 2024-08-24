@@ -1,29 +1,66 @@
-import { useRef, useState } from "react"
+import { useState, useRef } from "react"
 
 function App() {
-  let [text, setText] = useState()
+  let [todos, SetTodos] = useState([]);
+  const inputRef = useRef()
 
-  function addTodo(event) {
+  function addTodo(event){
     event.preventDefault()
+    let newTodo = inputRef.current.value
+    SetTodos([...todos, newTodo])
+    inputRef.current.value = ''
+  }
+
+  function deleteBtn(index){
+    todos.splice(index,1)
+    SetTodos([...todos])
+  }
+
+  function editBtn(index){
+    let ubdateVal = prompt('enter new val')
+    todos.splice(index, 1 , ubdateVal)
+    SetTodos([...todos])
+    // inputRef.current.value = ''
   }
 
   return (
     <>
-      <h2 className="text-center mt-3">Hello World</h2>
-      {/* container div */}
-      <div className="container text-center">
-        {/* input form */}
-        <form onSubmit={addTodo} className="d-flex flex-wrap">
-          <input onChange={(e) => setText(e.target.value)} className="input" type="text" placeholder="Enter Todo!" />
-          <button className="btn btn-success mt-3 addTodoBtn">Add Todo</button>
+      <div>
+        <form>
+          <input type="text" placeholder="Enter Todo" ref={inputRef}/>
+          <button onClick={addTodo}>Add Todo</button>
         </form>
-      </div>
-
-      <div id="list">
-        <ul></ul>
+        <div>
+          <ul>{todos.map((item, index) => (
+            <div key={index}>
+              <li>{item}</li>
+              <button onClick={() => deleteBtn(index)}>Delete</button>
+              <button onClick={() => editBtn(index)}>Edit</button>
+            </div>
+          ))}</ul>
+        </div>
       </div>
     </>
   )
 }
 
 export default App
+
+
+
+
+
+// javascript destucurting practice
+
+// let users = {
+//   usernmae: 'haseeb ur rehman js',
+//   email : 'haseeb@gamil.com',
+//   phoneNumber : +923167979839,
+//   isLoggedIn : true
+// }
+
+// let [email, usernmae, phoneNumber,isLoggedIn] = users
+
+// console.log(users);
+
+

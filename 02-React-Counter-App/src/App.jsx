@@ -1,3 +1,5 @@
+// import { useState } from "react"
+
 import { useState } from "react"
 
 function App() {
@@ -47,3 +49,26 @@ function App() {
 }
 
 export default App
+
+
+// function App(){
+//   let [num, SetNum] = useState(1)
+
+//   function addBtn(){
+//     SetNum(num + 1)
+//   }
+
+//   function lessBtn(){
+//     SetNum(num - 1)
+//   }
+
+//   return (
+//     <div>
+//       <h1>{num}</h1>
+//       <button onClick={addBtn}>Add</button>
+//       <button onClick={lessBtn}>less</button>
+//     </div>
+//   )
+// }
+
+// export default App
