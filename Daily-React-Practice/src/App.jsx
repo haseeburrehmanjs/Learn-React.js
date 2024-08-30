@@ -1,5 +1,6 @@
 // import { useEffect, useState } from "react"
 
+import { useEffect } from "react"
 import Button from "./Components/Button"
 
 // function App() {
@@ -33,14 +34,28 @@ import Button from "./Components/Button"
 
 
 function App() {
+  useEffect(()=> {
+    console.log('use effect');
+  }, [add])
 
+  function add(){
+
+  }
 
   return (
     <>
-      <h1>Hello World</h1>
-      <Button title="click me"/>
-      <Button title="back"/>
-      <Button title="add todo"/>
+      <div className="p-5 bg-slate-100 flex justify-between items-center">
+          <div>
+          <h1 className="text-2xl font-bold font-extrabold">Hasseb ur rehman js</h1>
+          </div>
+          <div>
+            <ul className="flex gap-3 items-center">
+              <li className="hover:text-green-400">User</li>
+              <li className="hover:text-green-400">Contect</li>
+              <li className="hover:text-green-400"><button className="btn bg-black text-white px-7 p-2 hover:bg-white hover:text-black border">Login</button></li>
+            </ul>
+          </div>
+      </div>
     </>
   )
 }
