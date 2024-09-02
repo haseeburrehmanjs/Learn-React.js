@@ -69,11 +69,11 @@
 
 // const App = () => {
 //     let [count , setCount] = useState(10)
-    
+
 //     return (
 //         <div>
 //             <Navbar />
-                
+
 //             <Footer />
 //         </div>
 //     )
@@ -87,9 +87,32 @@
 // const App = () => {
 //   return (
 //     <>
-      
+
 //     </>
 //   )
 // }
 
 // export default App
+
+
+// import React, { useState } from 'react'
+// import Card from './Components/Card'
+
+// const App = () => {
+//     let [Number, setNumber] = useState(0)
+//     function addBtn(){
+//         setNumber(Number += 4)
+//     }
+//     return (
+//         <>
+//             <h1>{Number}</h1>
+//             <button className='bg-black  text-white' onClick={addBtn}>Add</button>
+
+//             <Card/>
+//         </>
+//     )
+// }
+
+// export default App
+
+
