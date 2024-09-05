@@ -1,61 +1,51 @@
 import axios from 'axios'
 import React, { useEffect, useRef, useState } from 'react'
+import Card from './Components/Card'
 
 const App = () => {
 
-    const [addweather, setaddweather] = useState(null)
+    const [addweather, setaddweather] = useState([])
     let inputRef = useRef()
-
-    useEffect(() => {
-
-    }, [checkStatus])
 
     function checkStatus(event) {
         event.preventDefault()
-        axios(`https://api.weatherapi.com/v1/current.json?key=e3e98122324b454b92f44333241406&q=${inputRef.current.value}&aqi=no`)
-            .then(responce => {
-                console.log(responce.data);
-                setaddweather(responce.data)
-                // console.log(addweather);
-            }).catch(error => {
-                console.log(error);
-            })
+        // if input is empty
+        if (inputRef.current.value === '') {
+            alert('please enter city name')
+        }
+
+        async function getData() {
+            try {
+                let weatherData = await axios(`https://api.weatherapi.com/v1/current.json?key=e3e98122324b454b92f44333241406&q=${inputRef.current.value}&aqi=no`)
+                // console.log(weatherData.data);
+
+                addweather.push({...weatherData.data})
+                setaddweather([...addweather])
+                console.log(addweather);
+            } catch {
+                alert('this city is not here')
+            }
+        }
+        getData()
+        inputRef.current.value = ''
     }
 
     return (
-        <>
-            <h1>Hello World</h1>
-            <form onSubmit={checkStatus}>
-                <input type="text" placeholder='Enter city name!' ref={inputRef} />
-                <button>Check</button>
+        <div>
+            <h1 className='mt-5 text-4xl font-bold text-white text-center'>Weather App</h1>
+            <form onSubmit={checkStatus} className='text-center mt-3 flex justify-center'>
+                <input id='input' className='outline-none pl-2 w-[300px] py-3' type="text" placeholder='Enter city name!' ref={inputRef} /> 
+                <button className='py-3 px-7 bg-green-600'>Check</button>
             </form>
 
-            {/* <div>
-                {addweather ? <div className="card mx-auto" style={{ width: "30rem" }}>
-                    <div className="card-body text-center">
-                        <h5 className="card-title" id="location">
-                            {addweather.location.name}
-                        </h5>
-                        <h6 className="card-subtitle mb-2 text-muted" id="date">
-                            {addweather.location.date}
-                        </h6>
-                        <img
-                            src="${data.current.condition.icon}"
-                            alt="Weather Icon"
-                            className="mb-2 Weather-Icon"
-                            id="weather-icon"
-                        />
-                        <h2 className="card-text" id="temperature">
-                            ${}
-                        </h2>
-                        <p className="card-text" id="description">
-                            ${"{"}data.current.condition.text{"}"}
-                        </p>
+            <div className='flex justify-center gap-2 flex-wrap mt-3'>
+                {addweather.length > 0 && (addweather.map((item,index) => (
+                    <div key={index}>
+                        <Card location={item.location} condition={item}/>
                     </div>
-                </div>
-                    : 'loading'}
-            </div> */}
-        </>
+                )))}
+            </div>
+        </div>
     )
 }
 
