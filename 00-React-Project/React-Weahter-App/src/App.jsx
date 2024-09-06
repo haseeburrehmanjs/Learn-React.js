@@ -23,7 +23,7 @@ const App = () => {
                 setaddweather([...addweather])
                 console.log(addweather);
             } catch {
-                alert('this city is not here')
+                alert('No City Found Please Try Another!')
             }
         }
         getData()
