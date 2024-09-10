@@ -116,3 +116,25 @@
 // export default App
 
 
+
+
+
+
+
+
+import React from 'react'
+
+const App = () => {
+  return (
+    <>
+      <h1>Hello haseeb</h1>
+      <form>
+        <input type="text" name="" id="" placeholder='enter your todo'/>
+      </form>
+    </>
+  )
+}
+
+export default App
+
+
