@@ -6,11 +6,22 @@ const App = () => {
     const [questionIndex, setQuestionIndex] = useState(0)
     const [choices, setChoices] = useState([])
     const [selectedChoice, setSelectedChoice] = useState('')
+    const [rightAnswer, setrightAnswer] = useState(0)
+    const [wrongAnswer, setwrongAnswer] = useState(0)
 
     function nextBtn() {
         if (questionIndex < quizQuestion.length - 1) {
             setQuestionIndex(questionIndex + 1)
             setSelectedChoice('') // Reset selected choice for the next question
+            console.log(selectedChoice);
+            if(selectedChoice === quizQuestion[questionIndex].correct_answer){
+                console.log('right answer');
+                setrightAnswer(rightAnswer + 1)
+            }else {
+                console.log('wrong anse'); 
+                setwrongAnswer(wrongAnswer + 1)
+            }
+            
         } else {
             alert('All questions have been answered.')
         }
@@ -22,6 +33,8 @@ const App = () => {
             setquizQuestion(quiz.data.results)
 
             const firstQuestion = quiz.data.results[0]
+            console.log(firstQuestion);
+            
             const allChoices = [...firstQuestion.incorrect_answers, firstQuestion.correct_answer]
             setChoices(shuffleArray(allChoices))
         }
@@ -71,6 +84,7 @@ const App = () => {
                 ))}
             </form>
             <button onClick={nextBtn}>Next</button>
+            <div>{questionIndex === questionIndex  && <h1>Right Answer{rightAnswer}/ Wrong Answer {wrongAnswer}</h1>}</div>
         </>
     )
 }
