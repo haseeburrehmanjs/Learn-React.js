@@ -12,13 +12,13 @@ const Layout = () => {
 
 
   return (
-    <div>
+    <div className='container mx-auto mt-5'>
       <form className='flex flex-col gap-3' onSubmit={handleSubmit(register)}>
-        <input type="text" placeholder='enter email'{...register("email", { required: true })} />
+        <input className='border p-2' type="text" placeholder='enter email'{...register("email", { required: true })} />
         <h6>{errors.email && <span className='text-red-600'>This field is required</span>}</h6>
-        <input type="text" placeholder='enter password' {...register("password", { required: true })} />
-        <h6>{errors.password && <span>This field is required</span>}</h6>
-        <button>subbmit</button>
+        <input className='border p-2' type="text" placeholder='enter password' {...register("password", { required: true })} />
+        <h6>{errors.password && <span className='text-red-600'>This field is required</span>}</h6>
+        <button className='bg-blue-600 p-3 text-white'>Submit</button>
       </form>
     </div>
   )
